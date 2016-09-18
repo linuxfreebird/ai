@@ -1,2 +1,2 @@
 # ai
-Learning to write arificially intelligent programs.
+Learning to write artificially intelligent programs.
