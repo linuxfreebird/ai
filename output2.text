@@ -1,0 +1,12 @@
+;; Dribble of #<IO TERMINAL-STREAM> started on 2016-09-18 17:01:16.
+
+"hello world" 
+4 
+6 
+8 
+;; Dribble of #<IO TERMINAL-STREAM> started on 2016-09-18 17:31:57.
+
+"hello world" 
+4 
+6 
+8 
