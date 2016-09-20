@@ -9,7 +9,6 @@
 
 void t0(double complex *x,int64_t NN);
 
-
 static PyObject *t0_think(PyObject *self, PyObject *args);
 
 static char module_docstring[] =
@@ -37,25 +36,32 @@ static PyObject *t0_think(PyObject *self, PyObject *args)
 {
   PyObject *x_obj,*x_array,*y_array;
   int64_t *x,*y;
-  int64_t N,NN;
+  int64_t N0,N1,N2;
 
   if (!PyArg_ParseTuple(args, "O", &x_obj))
-    { 
+    {
       printf("_fgt error : only one input allowed\n");
       return 1;
     }
-  x_array = PyArray_FROM_OTF(x_obj, NPY_INT64, NPY_IN_ARRAY);
+  x_array = PyArray_FROM_OTF(x_obj, NPY_UBYTE, NPY_IN_ARRAY);
 
-  int64_t *x_dims = PyArray_DIMS(x_array);
+  // int64_t *x_dims = PyArray_DIMS(x_array);
 
-  x = (int64_t *)PyArray_DATA(x_array);
-  N = (int64_t)PyArray_DIM(*x_array, 0);
-  npy_intp dims[2];
-  dims[0] = NN;
-  dims[1] = NN;
-  y_array = PyArray_SimpleNew(2, dims, NPY_INT64);
+  x = (uint8_t *)PyArray_DATA(x_array);
+  N0 = (int64_t)PyArray_DIM(*x_array, 0);
+  N1 = (int64_t)PyArray_DIM(*x_array, 1);
+  N2 = (int64_t)PyArray_DIM(*x_array, 2);
+  // npy_intp dims[2];
+  // dims[0] = NN;
+  // dims[1] = NN;
+  // y_array = PyArray_SimpleNew(2, dims, NPY_INT64);
+  // y = (double complex *)PyArray_DATA(*y_array);
 
-  y = (double complex *)PyArray_DATA(*y_array);
-
-  return y_array;
+  //  return y_array;
+  return;
 }
+
+void t0(uint8_t * memory, uint8_t* raw_thought, int64_t m0, int64_t m1, int64_t m2, int64_t rt0)
+  {
+
+  }
