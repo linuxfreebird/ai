@@ -7,7 +7,7 @@
 #include <inttypes.h>
 #include <stdlib.h>
 
-void t0(double complex *x,int64_t NN);
+// void t0(double complex *x,int64_t NN);
 
 static PyObject *t0_think(PyObject *self, PyObject *args);
 
@@ -35,7 +35,7 @@ PyMODINIT_FUNC init_think(void)
 static PyObject *t0_think(PyObject *self, PyObject *args)
 {
   PyObject *x_obj,*x_array,*y_array;
-  int64_t *x,*y;
+  uint64_t *x,*y;
   int64_t N0,N1,N2;
 
   if (!PyArg_ParseTuple(args, "O", &x_obj))
@@ -47,21 +47,21 @@ static PyObject *t0_think(PyObject *self, PyObject *args)
 
   // int64_t *x_dims = PyArray_DIMS(x_array);
 
-  x = (uint8_t *)PyArray_DATA(x_array);
-  N0 = (int64_t)PyArray_DIM(*x_array, 0);
-  N1 = (int64_t)PyArray_DIM(*x_array, 1);
-  N2 = (int64_t)PyArray_DIM(*x_array, 2);
-  // npy_intp dims[2];
-  // dims[0] = NN;
-  // dims[1] = NN;
-  // y_array = PyArray_SimpleNew(2, dims, NPY_INT64);
-  // y = (double complex *)PyArray_DATA(*y_array);
+  x = (uint8_t )PyArray_DATA(x_array);
+  N0 = (int64_t)PyArray_DIM(x_array, 0);
+  N1 = (int64_t)PyArray_DIM(x_array, 1);
+  npy_intp dims[2];
+  dims[0] = N0;
+  dims[1] = N1;
+  y_array = PyArray_SimpleNew(2, dims, NPY_UINT8);
+  y = (uint8_t)PyArray_DATA(y_array);
 
-  //  return y_array;
-  return;
+  return y_array;
+  //  return ;
 }
-
+/*
 void t0(uint8_t * memory, uint8_t* raw_thought, int64_t m0, int64_t m1, int64_t m2, int64_t rt0)
   {
 
   }
+*/
